@@ -13,6 +13,9 @@ done
 
 DOCKER_SOCKET=/var/run/docker.sock
 
+echo $CONTAINER_REGISTRY_PASSWORD | docker login ${CONTAINER_REGISTRY} \
+  --username $CONTAINER_REGISTRY_USERNAME \
+  --password-stdin
 docker build -t push-docker-image . --file Dockerfile.push-docker-image
 docker run \
   --mount src=$DOCKER_SOCKET,target=$DOCKER_SOCKET,type=bind \
