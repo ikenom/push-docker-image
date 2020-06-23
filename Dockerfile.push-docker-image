@@ -1,0 +1,12 @@
+FROM ikenom.azurecr.io/deploy-scripts
+
+RUN mkdir /data
+RUN mkdir /data/push-docker-image
+WORKDIR /data/push-docker-image
+
+COPY . .
+
+COPY ./scripts/push-docker-image/entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["bash", "/data/push-docker-image/entrypoint.sh"]
