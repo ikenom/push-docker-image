@@ -12,6 +12,7 @@ while getopts 'c:u:p:' arg; do
 done
 
 DOCKER_SOCKET=/var/run/docker.sock
+DOCKER_IMAGE_NAME=push-docker-image
 
 echo $CONTAINER_REGISTRY_PASSWORD | docker login ${CONTAINER_REGISTRY} \
   --username $CONTAINER_REGISTRY_USERNAME \
@@ -19,7 +20,7 @@ echo $CONTAINER_REGISTRY_PASSWORD | docker login ${CONTAINER_REGISTRY} \
 docker build -t push-docker-image . --file Dockerfile.push-docker-image
 docker run \
   --mount src=$DOCKER_SOCKET,target=$DOCKER_SOCKET,type=bind \
-  --env DOCKER_IMAGE_NAME=push-docker-image \
+  --env DOCKER_IMAGE_NAME=$DOCKER_IMAGE_NAME \
   --env CONTAINER_REGISTRY=$CONTAINER_REGISTRY \
   --env CONTAINER_REGISTRY_USERNAME=$CONTAINER_REGISTRY_USERNAME \
   --env CONTAINER_REGISTRY_PASSWORD=$CONTAINER_REGISTRY_PASSWORD \
