@@ -23,4 +23,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Push Docker Image
       run: |
-        scripts/push-docker-image.sh -c ${{ secrets.CONTAINER_REGISTRY }} -u ${{ secrets.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+        scripts/push-docker-image.sh -c ${"{ secrets.CONTAINER_REGISTRY }/push-docker-image"} -u ${{ secrets.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
