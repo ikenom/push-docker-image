@@ -1,2 +1,2 @@
-FROM ikenom.azurecr.io/push-docker-image
+FROM docker.pkg.github.com/ikenom/push-docker-image/push-docker-image
 COPY . .
